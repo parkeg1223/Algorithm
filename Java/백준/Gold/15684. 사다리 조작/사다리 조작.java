@@ -5,7 +5,7 @@ public class Main {
 
     static int N, M, H, nLad = Integer.MAX_VALUE;
     static boolean possible;
-    static boolean[][][] ladder;
+    static boolean[][] ladder;
 
     public static void main(String[] args) throws IOException {
         input();
@@ -32,20 +32,15 @@ public class Main {
         for (int i = sx; i <= H; i++) {
             for (int j = sy; j < N; j++) {
 
-                if (ladder[j][j+1][i]) continue;
-                if (j > 1 && ladder[j-1][j][i]) continue;
-                if (j < N-1 && ladder[j+1][j+2][i]) continue;
+                if (ladder[j][i] || (j > 1 && ladder[j-1][i]) || (j < N-1 && ladder[j+1][i])) continue;
 
-
-                ladder[j][j+1][i] = true;
-                ladder[j+1][j][i] = true;
+                ladder[j][i] = true;
                 if (sy == N-1) {
                     dfs(sx+1, 1, step+1, maxLad);
                 } else {
                     dfs(sx, sy+1, step+1, maxLad);
                 }
-                ladder[j][j+1][i] = false;
-                ladder[j+1][j][i] = false;
+                ladder[j][i] = false;
             }
         }
 
@@ -55,9 +50,9 @@ public class Main {
         for (int i = 1; i <= N; i++) {
             int currIdx = i;
             for (int j = 1; j <= H; j++) {
-                if (currIdx < N && ladder[currIdx][currIdx+1][j]) {
+                if (currIdx < N && ladder[currIdx][j]) {
                     currIdx++;
-                } else if (currIdx > 1 && ladder[currIdx][currIdx-1][j]) {
+                } else if (currIdx > 1 && ladder[currIdx-1][j]) {
                     currIdx--;
                 }
             }
@@ -74,14 +69,13 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         H = Integer.parseInt(st.nextToken());
-        ladder = new boolean[N+1][N+1][H+1];
+        ladder = new boolean[N+1][H+1];
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(in.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            ladder[b][b+1][a] = true;
-            ladder[b+1][b][a] = true;
+            ladder[b][a] = true;
         }
     }
 }
