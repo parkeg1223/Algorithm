@@ -50,17 +50,9 @@ public class Main {
             kill += tempResult;
             enemy -= tempResult;
             enemy -= down();
-//            print();
         }
 
         maxKill = Math.max(maxKill, kill);
-    }
-
-    public static void print() {
-        System.out.println("------------ map print ---------------");
-        for (int i = 0; i < N; i++) {
-            System.out.println(Arrays.toString(tempField[i]));
-        }
     }
 
     public static int shoot() {
