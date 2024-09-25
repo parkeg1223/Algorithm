@@ -1,12 +1,10 @@
 import java.io.*;
-import java.util.*;
 
 public class Main {
 
     static long[] ans;
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
         int n = Integer.parseInt(in.readLine());
         ans = new long[n+1];
         ans[1] = 1;
