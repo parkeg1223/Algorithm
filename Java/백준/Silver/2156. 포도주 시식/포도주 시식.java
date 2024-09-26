@@ -8,19 +8,20 @@ public class Main {
         int n = Integer.parseInt(in.readLine());
 
         int[] wine = new int[n+1];
-        int[][] ans = new int[n+1][3];
+        int[] ans = new int[n+1];
         for (int i = 1; i <= n; i++) {
             wine[i] = Integer.parseInt(in.readLine());
         }
 
-        ans[1][2] = 0;
-        ans[1][1] = wine[1];
-        for (int i = 2; i <= n; i++) {
-            for (int j = 0; j <= 1; j++) {
-                ans[i][j] = Math.max(ans[i-1][j], ans[i-1][j+1] + wine[i]);
-            }
-            ans[i][2] = Math.max(Math.max(ans[i-1][0], ans[i-1][1]), ans[i-1][2]);
+        ans[1] = wine[1];
+        if (n >= 2) ans[2] = ans[1]+wine[2];
+        for (int i = 3; i <= n; i++) {
+            // i번째 와인을 먹은 경우 중 최대 = Math.max(i-1번째 와인을 먹은 경우, i-1번째 와인을 먹지 않은 경우) + i번째 와인
+            ans[i] = Math.max(ans[i-3] + wine[i-1], ans[i-2]) + wine[i];
+            // i번째 와인까지 최대로 먹는 경우 = Math.max(i번쨰 와인을 먹은 경우, i번쨰 와인을 먹지 않은 경우)
+            ans[i] = Math.max(ans[i], ans[i-1]);
         }
-        System.out.println(Math.max(Math.max(ans[n][0], ans[n][1]), ans[n][2]));
+
+        System.out.println(ans[n]);
     }
 }
