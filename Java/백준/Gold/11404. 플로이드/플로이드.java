@@ -33,7 +33,7 @@ public class Main {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                 for (int k = 1; k <= n; k++) {
-                    cost[j][k] = Math.min(cost[j][k], cost[j][i] + cost[i][k]);
+                    if (cost[j][k] > cost[j][i] + cost[i][k]) cost[j][k] = cost[j][i] + cost[i][k];
                 }
             }
         }
