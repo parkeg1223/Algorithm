@@ -25,9 +25,7 @@ public class Main {
         for (int k = 1; k <= N; k++) {
             for (int i = 1; i <= N; i++) {
                 for (int j = 1; j <= N; j++) {
-                    if (i == j || j == k || i == k) {
-                        cost[i][j][k+1] = cost[i][j][k];
-                    } else if (cost[i][j][k] > cost[i][k][k] + cost[k][j][k]) {
+                    if (cost[i][j][k] > cost[i][k][k] + cost[k][j][k]) {
                         cost[i][j][k+1] = cost[i][k][k] + cost[k][j][k];
                     } else cost[i][j][k+1] = cost[i][j][k];
                 }
