@@ -17,8 +17,7 @@ public class Main {
             snack[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(snack);
-        int start = 1, end = snack[n-1], mid, answer = 0;
+        int start = 1, end = Arrays.stream(snack).max().getAsInt(), mid, answer = 0;
         while (start <= end) {
             mid = (start + end) / 2;
             if (possible(mid)) {
@@ -32,9 +31,8 @@ public class Main {
 
     public static boolean possible(int num) {
         int temp = 0;
-        for (int i = n-1; i >= 0; i--) {
+        for (int i = 0; i < n; i++) {
             temp += snack[i] / num;
-            if (snack[i] / num == 0) break;
         }
         return temp >= m;
     }
