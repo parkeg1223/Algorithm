@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
 
-    static int N, M, dist = Integer.MAX_VALUE;
+    static int N, M, dist;
     static boolean[] visited;
     static List<List<int[]>> adj = new ArrayList<>();
     public static void main(String[] args) throws IOException {
@@ -42,7 +42,8 @@ public class Main {
 
     public static void dfs(int start, int end, int currDist) {
         if (start == end) {
-            dist = Math.min(dist, currDist);
+            dist = currDist;
+            return;
         }
 
         visited[start] = true;
