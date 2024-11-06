@@ -8,10 +8,9 @@ public class Main {
     static Node[] adj;
 
     public static class Node {
-        int val, left, right;
+        int left, right;
 
-        public Node(int val, int left, int right) {
-            this.val = val;
+        public Node(int left, int right) {
             this.left = left;
             this.right = right;
         }
@@ -30,11 +29,10 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
-            adj[a] = new Node(a, b, c);
+            adj[a] = new Node(b, c);
         }
 
         dfs(1);
-
         System.out.print(move);
     }
 
