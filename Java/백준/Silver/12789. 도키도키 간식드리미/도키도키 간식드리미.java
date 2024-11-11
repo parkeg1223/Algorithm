@@ -16,19 +16,14 @@ public class Main {
 
         int next = 1;
         while (next <= N) {
-            if (!waiting.isEmpty()) {
-                if (waiting.peek() == next) {
-                    waiting.poll();
-                    next++;
-                } else if (!space.isEmpty() && space.peek() == next) {
-                    space.poll();
-                    next++;
-                } else {
-                    space.addFirst(waiting.poll());
-                }
+            if (!waiting.isEmpty() && waiting.peek() == next) {
+                waiting.poll();
+                next++;
             } else if (!space.isEmpty() && space.peek() == next) {
-               space.poll();
-               next++;
+                space.poll();
+                next++;
+            } else if (!waiting.isEmpty()) {
+                space.addFirst(waiting.poll());
             } else {
                 System.out.println("Sad");
                 return;
